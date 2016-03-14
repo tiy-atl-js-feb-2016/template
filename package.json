@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "predist:all": "mkdir -p dist dist/js dist/css",
-    "dist:all": "npm run dist:html && npm run dist:css && npm run dist:js",
+    "predist:all": "mkdir -p dist dist/js dist/css dist/images",
+    "dist:all": "npm run dist:html && npm run dist:css && npm run dist:js && npm run dist:images",
+    "dist:images": "cp src/images/* dist/images/",
     "dist:html": "cp src/html/*.html dist/",
     "dist:js": "browserify src/js/index.js -d -t [ babelify ] -o dist/js/bundle.js",
     "dist:css": "node-sass src/sass/main.scss --source-map-embed -o dist/css",
     "dist:clean": "rm -rf \"$(npm prefix)/dist\"",
     "prewatch": "npm run dist:all",
-    "watch": "watchman-make --make 'npm run' -p 'src/js/*' -t dist:js -p 'src/sass/*' -t dist:css -p 'src/html/*' -t dist:html",
+    "watch": "watchman-make --make 'npm run' -p 'src/js/*' -t dist:js -p 'src/sass/*' -t dist:css -p 'src/html/*' -t dist:html -p 'src/images/*' -t dist:images",
     "server": "http-server dist",
     "develop": "parallelshell 'npm run watch' 'npm run server'",
     "deploy": "surge -p \"$(npm prefix)/dist\" -d \"tiy-2016q1-$(whoami)-${PWD##*/}.surge.sh\""
