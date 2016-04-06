@@ -10,7 +10,7 @@
     "dist:images": "cp src/images/* dist/images/",
     "dist:html": "cp src/html/*.html dist/",
     "dist:js": "browserify src/js/index.js -d -t [ babelify ] -o dist/js/bundle.js",
-    "dist:css": "node-sass src/sass/main.scss --source-map-embed -o dist/css --include-path 'node_modules/font-awesome/scss'",
+    "dist:css": "node-sass src/sass/main.scss --source-map-embed -o dist/css --include-path 'node_modules'",
     "dist:clean": "rm -rf \"$(npm prefix)/dist\"",
     "dist:font-awesome": "[ -d \"node_modules/font-awesome/fonts\" ] && npm run copy:fonts || echo ''",
     "copy:fonts": "cp -R node_modules/font-awesome/fonts dist/",
